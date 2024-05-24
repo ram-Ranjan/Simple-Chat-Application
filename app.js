@@ -19,29 +19,35 @@ app.get('/login', (req, res) => {
   res.send(`
     <h3>Login</h3>
     <form action="/login" method="POST">
-      <input type="text" name="username" placeholder="Enter your username">
+      <input type="text" name="username" id="username" placeholder="Enter your username">
       <button type="submit">Login</button>
     </form>
   `);
 });
 
-app.post('/login', (req, res) => {
-  const username = req.body.username;
-  if (username) {
-    res.set('Content-Type', 'text/html');
-    res.send(`
-      <script>
-        window.localStorage.setItem('username', '${username}');
-        window.location.href = '/chat';
-      </script>
-    `);
-  } else {
-    res.redirect('/login');
-  }
-});
+
+
+app.post('/login',(req,res) => {
+
+  let userName=req.body.username;
+  //console.log(userName)
+  res.send(`
+  <h2>Welcome to Chatter</h2>
+  <h3>Logged User: ${userName}</h3> 
+  <a href="/chat">Go to Chat</a>
+
+    <a href="/login">Another user Login</a>
+  <script>
+  window.localStorage.setItem("userName","${userName}");//got current user
+
+</script>
+  `)
+
+})
 
 
 
-app.listen(3000, () => {
+
+app.listen(4000, () => {
   console.log('Server is running on http://localhost:3000');
 });
