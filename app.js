@@ -39,15 +39,27 @@ app.post('/login',(req,res) => {
     <a href="/login">Another user Login</a>
   <script>
   window.localStorage.setItem("userName","${userName}");//got current user
+  // window.location.href = '/chat';
+
 
 </script>
   `)
 
 })
 
+app.get('/chat',(req,res) => {
+  
+  res.send(`
+
+  <form id="formData" action="/chat"><input type="text" name=msg placeholder="Type your message" id="msg"><button type="submit" >Send</button></form>
+    
+  `)
+})
+
+
 
 
 
 app.listen(4000, () => {
-  console.log('Server is running on http://localhost:3000');
+  console.log('Server is running on http://localhost:4000');
 });
